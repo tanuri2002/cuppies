@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "../styles.css";
 
 function Login() {
@@ -9,13 +9,35 @@ function Login() {
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (form.email && form.password) {
-      alert("Login successful!");
-      navigate("/");
-    } else {
-      alert("Please enter valid credentials");
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/api/auth/login`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(form),
+        }
+      );
+
+      const text = await response.text();
+      let data;
+      try {
+        data = JSON.parse(text);
+      } catch {
+        data = { message: text };
+      }
+
+      if (response.ok) {
+        alert("Login successful!");
+        navigate("/"); 
+      } else {
+        alert(data.message || "Login failed");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      alert("Something went wrong. Try again later.");
     }
   };
 
@@ -40,6 +62,10 @@ function Login() {
           required
         />
         <button type="submit">Login</button>
+
+        <p>
+          Don’t have an account? <Link to="/signup">Signup</Link>
+        </p>
       </form>
     </div>
   );

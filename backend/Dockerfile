@@ -14,5 +14,5 @@ COPY . .
 # Expose backend port
 EXPOSE 5000
 
-# Start the server
-CMD ["npm", "start"]
+# Start the server with nodemon
+CMD ["npm", "run", "dev"]

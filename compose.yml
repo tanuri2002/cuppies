@@ -1,17 +1,16 @@
-version:  0.1.0
-
 services:
   frontend:
-    build: .            # path to folder with Dockerfile and package.json
+    build: ./frontend
     ports:
       - "3000:3000"
     volumes:
-      - .:/app  
-      - /app/node_modules
+      - ./frontend:/app             # bind mount your source code
+      - frontend_node_modules:/app/node_modules  # container-managed node_modules
     stdin_open: true
     tty: true
     environment:
-    - CHOKIDAR_USEPOLLING=true    # <-- ensures hot reload works in Docker
+      - CHOKIDAR_USEPOLLING=true
+      - WDS_SOCKET_PORT=0
     command: npm start
     depends_on:
       - backend
@@ -22,20 +21,22 @@ services:
     ports:
       - "5000:5000"
     volumes:
-      - ./backend:/app
-      - /app/node_modules
+      - ./backend:/app              # bind mount backend source code
+      - backend_node_modules:/app/node_modules  # container-managed node_modules
     env_file:
       - ./backend/.env
-    command: npm run dev       # nodemon for hot reload
+    command: npm run dev
     depends_on:
       - db
 
   db:
     image: mongo:latest
     ports:
-      - "27017:27017"
+      - "27018:27017"
     volumes:
       - mongo-data:/data/db
 
 volumes:
   mongo-data:
+  frontend_node_modules:
+  backend_node_modules:
