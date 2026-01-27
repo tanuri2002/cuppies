@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
-        IMAGE_NAME = 'tanuri123/cuppies' // change to your Docker Hub repo name
+        IMAGE_NAME = 'tanuri123/cuppies'
     }
 
     stages {
@@ -13,9 +13,15 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
+        stage('Build Docker Images') {
             steps {
-                sh 'docker build -t $IMAGE_NAME:latest .'
+                script {
+                    echo 'Building Frontend Image...'
+                    sh 'docker build -t $IMAGE_NAME:frontend ./frontend'
+                    
+                    echo 'Building Backend Image...'
+                    sh 'docker build -t $IMAGE_NAME:backend ./backend'
+                }
             }
         }
 
@@ -26,7 +32,12 @@ pipeline {
                     passwordVariable: 'DOCKERHUB_PASS')]) {
                     sh """
                     echo $DOCKERHUB_PASS | docker login -u $DOCKERHUB_USER --password-stdin
-                    docker push $IMAGE_NAME:latest
+                    
+                    echo 'Pushing Frontend Image...'
+                    docker push $IMAGE_NAME:frontend
+                    
+                    echo 'Pushing Backend Image...'
+                    docker push $IMAGE_NAME:backend
                     """
                 }
             }
