@@ -5,7 +5,6 @@ pipeline {
         DOCKER_HUB_USER = 'tanuri123'
         BACKEND_IMAGE = 'tanuri123/cuppies:backend'
         FRONTEND_IMAGE = 'tanuri123/cuppies:frontend'
-}
     }
 
     stages {
@@ -51,4 +50,4 @@ pipeline {
             echo '✅ Deployment Succeeded!'
         }
     }
-
+}
