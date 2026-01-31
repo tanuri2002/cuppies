@@ -3,8 +3,9 @@ pipeline {
 
     environment {
         DOCKER_HUB_USER = 'tanuri123'
-        FRONTEND_IMAGE = 'tanuri123/frontend:latest'
-        BACKEND_IMAGE = 'tanuri123/backend:latest'
+        BACKEND_IMAGE = 'tanuri123/cuppies:backend'
+        FRONTEND_IMAGE = 'tanuri123/cuppies:frontend'
+}
     }
 
     stages {
