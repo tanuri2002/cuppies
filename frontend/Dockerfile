@@ -1,27 +1,18 @@
-# Use the latest LTS version of Node.js
-FROM node:20
+# Build stage
+FROM node:20 AS build
 
-# Set the working directory inside the container
 WORKDIR /app
-
-# Copy package.json and package-lock.json
 COPY package*.json ./
-
-# Install dependencies
 RUN npm install
-
-# Copy the rest of your application files
 COPY . .
+RUN npm run build
 
-# Build the React app
-# RUN npm run build
+# Production stage
+FROM node:20-alpine
 
-# Install 'serve' to serve the production build
-# RUN npm install -g serve
+WORKDIR /app
+RUN npm install -g serve
+COPY --from=build /app/build ./build
 
-# Expose the port your app will run on
 EXPOSE 3000
-
-# Command to serve the production build
-# CMD ["serve", "-s", "build", "-l", "3000"]
-CMD ["npm", "start"]
+CMD ["serve", "-s", "build", "-l", "3000"]
