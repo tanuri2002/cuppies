@@ -71,6 +71,7 @@ resource "aws_instance" "cuppies" {
   key_name                    = aws_key_pair.cuppies_key.key_name
   vpc_security_group_ids      = [aws_security_group.cuppies_sg.id]
   associate_public_ip_address = true
+  user_data                   = file("${path.module}/user_data.sh")
 
   root_block_device {
     volume_type           = "gp3"

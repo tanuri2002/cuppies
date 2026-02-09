@@ -4,7 +4,7 @@ set -eux
 
 # Update and install prerequisites
 apt-get update -y
-apt-get install -y apt-transport-https ca-certificates curl software-properties-common gnupg lsb-release
+apt-get install -y apt-transport-https ca-certificates curl software-properties-common gnupg lsb-release git
 
 # Install Docker
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
@@ -24,6 +24,11 @@ chown -R ubuntu:ubuntu /home/ubuntu/cuppies
 
 # Enable docker on boot
 systemctl enable docker
+
+# Clone the repository
+cd /home/ubuntu/cuppies
+git clone https://github.com/tanuri2002/cuppies.git . || true
+chown -R ubuntu:ubuntu /home/ubuntu/cuppies
 
 # Done
 echo "cloud-init done"
