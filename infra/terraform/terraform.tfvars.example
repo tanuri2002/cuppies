@@ -1,0 +1,5 @@
+# Example terraform variables file. Copy to terraform.tfvars and update values.
+aws_region      = "us-east-1"
+instance_type   = "t3.micro"
+# Name of an existing AWS key pair in the selected region/account (must already exist)
+key_name        = "cuppies-key"
