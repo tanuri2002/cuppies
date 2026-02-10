@@ -27,7 +27,7 @@ pipeline {
                         docker push ${BACKEND_IMAGE}
                         
                         echo "Building and pushing frontend..."
-                        docker build -t ${FRONTEND_IMAGE} ./frontend
+                        docker build --build-arg REACT_APP_API_URL=http://${EC2_HOST}:5000 -t ${FRONTEND_IMAGE} ./frontend
                         docker push ${FRONTEND_IMAGE}
                     '''
                 }

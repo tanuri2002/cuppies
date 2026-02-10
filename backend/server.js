@@ -6,13 +6,7 @@ require("dotenv").config();
 const app = express();
 
 // Configure CORS
-app.use(
-  cors({
-    origin: "http://localhost:3000",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true, // If you plan to use JWT cookies later
-  })
-);
+app.use(cors()); // Allow all origins for now to fix production connectivity
 
 app.use(express.json());
 
