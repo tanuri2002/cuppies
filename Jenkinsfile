@@ -97,6 +97,7 @@ pipeline {
     post {
         always {
             echo 'Build & Deploy stage completed'
+            cleanWs()
         }
         success {
             echo '✅ Deployment Succeeded!'
