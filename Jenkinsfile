@@ -71,19 +71,19 @@ pipeline {
                         docker pull "$FRONTEND_IMAGE"
                         
                         echo "Stopping and removing existing containers..."
-                        docker compose down --remove-orphans || true
+                        docker compose -f compose.prod.yml down --remove-orphans || true
                         
                         echo "Starting services..."
-                        docker compose up -d --remove-orphans
+                        docker compose -f compose.prod.yml up -d --remove-orphans
                         
                         echo "Waiting for services to become healthy..."
                         sleep 12
                         
                         echo "Container status:"
-                        docker compose ps
+                        docker compose -f compose.prod.yml ps
                         
                         echo "Recent logs (last 15 lines):"
-                        docker compose logs --tail=15
+                        docker compose -f compose.prod.yml logs --tail=15
                         
                         echo "Deployment finished successfully ✓"
                         
