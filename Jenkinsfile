@@ -87,7 +87,7 @@ pipeline {
                         
                         echo "Deployment finished successfully ✓"
                         
-                    END_REMOTE_SCRIPT
+END_REMOTE_SCRIPT
                     '''
                 }
             }
