@@ -2,41 +2,61 @@ import React from "react";
 
 const AboutUs = () => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="about-page">
       {/* Header Section */}
-      <header className="relative bg-gray-900 text-white h-72 flex items-center">
-        {/* Overlay text (aligned right) */}
-        <div className="relative ml-auto mr-12 text-right">
-          <h1 className="text-4xl font-bold mb-2">About Us</h1>
-          <p className="max-w-md text-gray-200">
-            Discover our passion for crafting the perfect cup of coffee and creating moments that matter.
-          </p>
+      <header className="about-header" style={{ backgroundImage: "url(/images/about-hero.png)" }}>
+        <div className="header-overlay">
+          <div className="header-content">
+            <h1>About Cuppies</h1>
+            <p>
+              Baking happiness into every bite since 2018. Discover our journey of
+              creating the world's most delightful cupcakes.
+            </p>
+          </div>
         </div>
-
-        {/* Background image (optional) */}
-        <img
-          src="/images/bg3.png"
-          alt="Coffee Beans"
-          className="absolute inset-0 w-full h-full opacity-40"
-        />
       </header>
 
       {/* About Section */}
-      <section className="flex flex-col md:flex-row items-center justify-between px-8 py-16 gap-8">
-        <div className="md:w-1/2">
-          <h2 className="text-3xl font-semibold mb-4">Our Story</h2>
-          <p className="text-gray-700 leading-relaxed">
-            Founded in 2018 in the heart of Amsterdam, Barista began as a small coffee shop with a big dream —
-            to bring the world’s finest coffee experiences to every cup. Our beans are ethically sourced from
-            sustainable farms, ensuring every sip supports both people and the planet.
-          </p>
+      <section className="about-section">
+        <div className="section-container">
+          <div className="text-content">
+            <h2>Our Story</h2>
+            <p>
+              Founded in 2024 with a passion for sweet perfection, Cuppies began as a small home-grown venture with a big dream — to bring joy to every celebration through beautifully crafted cupcakes. What started as a simple love for baking has grown into a brand dedicated to creativity, quality, and unforgettable flavors.
+            </p>
+            <p>
+              Our cupcakes are made with carefully selected ingredients, baked fresh with love, and designed to make every moment a little sweeter. At Cuppies, we believe every bite should feel special — because happiness is best shared, one cupcake at a time.
+            </p>
+          </div>
+          <div className="image-content">
+            <img
+              src="/images/bg2.jpg"
+              alt="Our Story"
+              className="rounded-image"
+            />
+          </div>
         </div>
+      </section>
 
-        <img
-          src="/images/bg2.png"
-          alt="Barista Shop"
-          className="w-full md:w-1/2 rounded-2xl shadow-lg"
-        />
+      {/* Meet the Bakers Section */}
+      <section className="about-section alternate-bg">
+        <div className="section-container reverse">
+          <div className="text-content">
+            <h2>Meet the Bakers</h2>
+            <p>
+              Our team consists of passionate artisans who live and breathe pastry.
+              With years of experience and a splash of creativity, they turn simple
+              flour and sugar into edible art.
+            </p>
+          </div>
+          <div className="image-content">
+            <img
+              src="/images/backers.jpeg"
+              alt="Our Passionate Team"
+              className="rounded-image"
+            />
+          </div>
+        </div>
       </section>
     </div>
   );
