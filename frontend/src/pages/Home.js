@@ -5,14 +5,14 @@ function Home() {
   return (
     <div className="home-container">
       {/* Hero Section */}
-        <div className="hero" style={{ backgroundImage: "url(/images/bg.png)" }}>
+      <div className="hero" style={{ backgroundImage: "url(/images/bg.png)" }}>
         <h1>Welcome to Cuppies</h1>
       </div>
 
       {/* Cards Section */}
       <div className="cards">
         <div className="card">
-          <h2>Our Signature Cupcakes</h2>
+          <h2>Tanuri</h2>
           <p>
             Try our best-selling cupcakes with rich flavors and unique toppings.
             Every bite is a delight!
